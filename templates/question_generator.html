@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>AI Question Generator</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="login-box">
+
+        <h1>AI Question Generator 🧠</h1>
+
+        <form method="POST">
+
+            <input type="text"
+                   name="topic"
+                   placeholder="Enter Topic"
+                   required>
+
+            <br><br>
+
+            <button type="submit">
+                Generate Questions
+            </button>
+
+        </form>
+
+        <br>
+
+        {% if questions %}
+
+        <div class="result-box">
+
+            <h3>Generated Questions 🤖</h3>
+
+            <pre>{{ questions }}</pre>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>

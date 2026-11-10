@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Leaderboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="content">
+
+        <h1>🏆 Leaderboard</h1>
+
+        <table border="1" align="center" cellpadding="15">
+
+            <tr>
+                <th>Username</th>
+                <th>Score</th>
+            </tr>
+
+            {% for row in data %}
+
+            <tr>
+
+                <td>{{ row[1] }}</td>
+
+                <td>{{ row[2] }}</td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</body>
+
+</html>

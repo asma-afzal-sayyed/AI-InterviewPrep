@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>SQL Quiz</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="login-box">
+
+        <h1>SQL Quiz 💾</h1>
+
+        <h3>Which SQL command fetches data?</h3>
+
+        <button onclick="checkAnswer('INSERT')">INSERT</button>
+
+        <button onclick="checkAnswer('SELECT')">SELECT</button>
+
+        <button onclick="checkAnswer('DELETE')">DELETE</button>
+
+        <button onclick="checkAnswer('DROP')">DROP</button>
+
+        <h2 id="result"></h2>
+
+    </div>
+
+    <script>
+
+        function checkAnswer(answer) {
+
+            if(answer == 'SELECT') {
+                document.getElementById("result").innerHTML =
+                "✅ Correct";
+            }
+
+            else {
+                document.getElementById("result").innerHTML =
+                "❌ Wrong";
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+
+venv/
+__pycache__/
+*.pyc
+.env
+API_key
+API_key.*
+uploads/*
+!uploads/.gitkeep
+.ipynb_checkpoints/
+.DS_Store
+My_API_key_files/

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>InterviewPrep AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="navbar">
+
+        
+
+        <div>
+
+            <a href="/">Home</a>
+
+            <a href="/python">Python</a>
+
+            <a href="/sql">SQL</a>
+
+            <a href="/sqlquiz">SQL Quiz</a>
+
+            <a href="/aptitude">Aptitude</a>
+
+            <a href="/quiz">Quiz</a>
+
+            <a href="/resume">Resume</a>
+
+            <a href="/signup">Signup</a>
+
+            <a href="/login">Login</a>
+
+            <a href="/logout">Logout</a>
+
+            <a href="/leaderboard">Leaderboard</a>
+
+            <a href="/chatbot">AI Bot</a>
+
+            <a href="/codechecker">Code Checker</a>
+
+            <a href="/generate">AI Questions</a>
+
+        </div>
+
+    </div>
+
+    {% if username %}
+
+    <h2 style="text-align:center; margin-top:20px;">
+
+        Welcome {{ username }} 👋
+
+    </h2>
+
+    {% endif %}
+
+    <div class="content">
+
+        <h1>Welcome to InterviewPrep AI 🚀</h1>
+
+        <p>Your AI-powered interview preparation platform.</p>
+
+        <br>
+
+        <a href="/python">
+            <button>Python Notes</button>
+        </a>
+
+        <a href="/sql">
+            <button>SQL Notes</button>
+        </a>
+
+        <a href="/sqlquiz">
+            <button>SQL Quiz</button>
+        </a>
+
+        <a href="/aptitude">
+            <button>Aptitude</button>
+        </a>
+
+        <a href="/quiz">
+            <button>Aptitude Quiz</button>
+        </a>
+
+        <br><br><br>
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h2>Aptitude Practice</h2>
+
+                <p>
+                    Practice quantitative aptitude questions.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h2>SQL Learning</h2>
+
+                <p>
+                    Learn SQL with notes and quizzes.
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h2>Resume Analyzer</h2>
+
+                <p>
+                    Analyze resumes using AI.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

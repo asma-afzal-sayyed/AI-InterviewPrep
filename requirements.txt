@@ -1,0 +1,11 @@
+flask
+pandas
+numpy
+scikit-learn
+nltk
+pymysql
+pdfplumber
+python-docx
+google-genai
+openai
+python-dotenv

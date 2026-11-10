@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Aptitude Quiz</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="login-box">
+
+        <h1>Aptitude Quiz 🧠</h1>
+
+        <h3>What is 10 + 5 ?</h3>
+
+        <button onclick="checkAnswer('10')">10</button>
+
+        <button onclick="checkAnswer('15')">15</button>
+
+        <button onclick="checkAnswer('20')">20</button>
+
+        <button onclick="checkAnswer('25')">25</button>
+
+        <h2 id="result"></h2>
+
+    </div>
+
+    <script>
+
+        let score = 0;
+
+        function checkAnswer(answer) {
+
+            if(answer == '15') {
+
+                score++;
+
+                document.getElementById("result").innerHTML =
+                "✅ Correct Answer | Score: " + score;
+            }
+
+            else {
+
+                document.getElementById("result").innerHTML =
+                "❌ Wrong Answer | Score: " + score;
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

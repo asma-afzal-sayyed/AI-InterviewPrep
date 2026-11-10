@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>AI Chatbot</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="login-box">
+
+        <h1>InterviewPrep AI Bot 🤖</h1>
+
+        <form method="POST">
+
+            <textarea
+                name="message"
+                placeholder="Ask Something..."
+                required>
+            </textarea>
+
+            <br><br>
+
+            <button type="submit">
+                Send
+            </button>
+
+        </form>
+
+        <br>
+
+        {% if response %}
+
+        <div class="ai-response">
+
+            <h3>AI Response 🤖</h3>
+
+            <pre>{{ response }}</pre>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,498 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Code Checker</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px 15px;
+            font-family: Arial, sans-serif;
+            background: #f3f5fb;
+            color: #263247;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #5145cd;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #687386;
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .panel {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 22px rgba(0, 0, 0, 0.06);
+        }
+
+        h2 {
+            color: #5145cd;
+            margin-top: 0;
+            font-size: 22px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 270px;
+            padding: 16px;
+            border: 1px solid #ccd3e0;
+            border-radius: 10px;
+            font-family: Consolas, monospace;
+            font-size: 15px;
+            line-height: 1.7;
+            resize: vertical;
+            background: #fafbff;
+            color: #202b3c;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #6658e8;
+            box-shadow: 0 0 0 3px rgba(102, 88, 232, 0.12);
+        }
+
+        button {
+            border: none;
+            padding: 13px 22px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+
+        .check-btn {
+            background: #5b4ce2;
+            color: white;
+        }
+
+        .check-btn:hover {
+            background: #4032bd;
+            transform: translateY(-2px);
+        }
+
+        .copy-btn {
+            background: #e9e7ff;
+            color: #5145cd;
+        }
+
+        .copy-btn:hover {
+            background: #d8d4ff;
+        }
+
+        .button-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .feedback {
+            background: #fafbff;
+            border: 1px solid #e0e4ef;
+            border-radius: 12px;
+            padding: 24px;
+            line-height: 1.8;
+            overflow-wrap: anywhere;
+        }
+
+        .feedback h1,
+        .feedback h2,
+        .feedback h3 {
+            text-align: left;
+            color: #5145cd;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-size: 19px;
+        }
+
+        .feedback h1:first-child,
+        .feedback h2:first-child,
+        .feedback h3:first-child {
+            margin-top: 0;
+        }
+
+        .feedback p {
+            margin: 10px 0;
+        }
+
+        .feedback ul,
+        .feedback ol {
+            padding-left: 25px;
+        }
+
+        .feedback li {
+            margin-bottom: 9px;
+        }
+
+        .feedback pre {
+            background: #202938;
+            color: #f1f5f9;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            line-height: 1.7;
+            border: 1px solid #354256;
+        }
+
+        .feedback pre code {
+            font-family: Consolas, monospace;
+            font-size: 14px;
+            background: transparent;
+            color: inherit;
+            padding: 0;
+            white-space: pre;
+        }
+
+        .feedback :not(pre) > code {
+            background: #e9e7ff;
+            color: #5145cd;
+            padding: 3px 6px;
+            border-radius: 4px;
+        }
+
+        .feedback blockquote {
+            border-left: 4px solid #6658e8;
+            padding: 10px 15px;
+            margin: 15px 0;
+            background: #f0efff;
+            border-radius: 5px;
+        }
+
+        .status {
+            color: #687386;
+            font-size: 13px;
+            margin-top: 12px;
+        }
+
+        .empty-message {
+            color: #687386;
+            line-height: 1.8;
+        }
+
+        .tip {
+            background: #f0efff;
+            border-left: 4px solid #6658e8;
+            padding: 15px;
+            border-radius: 8px;
+            color: #454078;
+            line-height: 1.7;
+            margin-top: 18px;
+        }
+
+        .result-label {
+            color: #687386;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+
+            .panel {
+                padding: 17px;
+            }
+
+            textarea {
+                min-height: 220px;
+            }
+
+            .button-row button {
+                width: 100%;
+            }
+
+            .feedback {
+                padding: 15px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>AI Coding Checker 💻</h1>
+
+        <p class="subtitle">
+            Check your Python code, find mistakes,
+            understand solutions and improve your coding skills.
+        </p>
+
+        <!-- Original Code -->
+
+        <div class="panel">
+
+            <h2>📝 Your Original Code</h2>
+
+            <p class="result-label">
+                Write or paste your Python code below.
+                Your code will remain visible after checking.
+            </p>
+
+            <form method="POST">
+
+                <textarea
+                    id="codeInput"
+                    name="code"
+                    placeholder="Write or paste your Python code here..."
+                    required>{{ code or '' }}</textarea>
+
+                <div class="button-row">
+
+                    <button type="submit" class="check-btn">
+                        Check My Code 🚀
+                    </button>
+
+                    <button
+                        type="button"
+                        class="copy-btn"
+                        onclick="copyOriginalCode()">
+                        Copy Original Code
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <!-- AI Feedback -->
+
+        {% if result %}
+
+        <div class="panel">
+
+            <h2>🤖 AI Code Analysis</h2>
+
+            <p class="result-label">
+                Your personalized code review and learning guide.
+            </p>
+
+            <div id="feedback" class="feedback">
+                Loading AI feedback...
+            </div>
+
+            <div class="button-row">
+
+                <button
+                    type="button"
+                    class="copy-btn"
+                    onclick="copyCorrectedCode()">
+                    📋 Copy Complete Corrected Code
+                </button>
+
+                <button
+                    type="button"
+                    class="copy-btn"
+                    onclick="copyAIResponse()">
+                    Copy Full Explanation
+                </button>
+
+            </div>
+
+            <p id="copyStatus" class="status"></p>
+
+            <div class="tip">
+                💡 <strong>Learning Tip:</strong>
+                First understand the errors, then read the
+                corrected code and try running it yourself.
+            </div>
+
+        </div>
+
+        <!-- Secure AI response -->
+
+        <script id="ai-response" type="application/json">{{ result | tojson }}</script>
+
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+
+        <script>
+
+            const responseElement =
+                document.getElementById("ai-response");
+
+            const aiResponse =
+                JSON.parse(responseElement.textContent);
+
+            const feedbackElement =
+                document.getElementById("feedback");
+
+
+            // Display formatted AI response
+
+            if (
+                typeof marked !== "undefined" &&
+                typeof DOMPurify !== "undefined"
+            ) {
+
+                const renderedHTML = marked.parse(aiResponse);
+
+                feedbackElement.innerHTML =
+                    DOMPurify.sanitize(renderedHTML);
+
+            } else {
+
+                feedbackElement.textContent = aiResponse;
+
+            }
+
+
+            // Copy corrected code
+
+            function copyCorrectedCode() {
+
+                const codeBlocks =
+                    document.querySelectorAll(
+                        "#feedback pre code"
+                    );
+
+                if (codeBlocks.length > 0) {
+
+                    // First code block is the complete corrected code
+                    const correctedCode =
+                        codeBlocks[0].innerText;
+
+                    navigator.clipboard.writeText(correctedCode)
+                        .then(() => {
+
+                            document.getElementById("copyStatus")
+                                .textContent =
+                                "✅ Corrected code copied successfully!";
+
+                        })
+                        .catch(() => {
+
+                            document.getElementById("copyStatus")
+                                .textContent =
+                                "Unable to copy. Please copy manually.";
+
+                        });
+
+                } else {
+
+                    document.getElementById("copyStatus")
+                        .textContent =
+                        "No corrected code block found.";
+
+                }
+
+            }
+
+
+            // Copy complete AI explanation
+
+            function copyAIResponse() {
+
+                navigator.clipboard.writeText(aiResponse)
+                    .then(() => {
+
+                        document.getElementById("copyStatus")
+                            .textContent =
+                            "✅ Full AI explanation copied successfully!";
+
+                    })
+                    .catch(() => {
+
+                        document.getElementById("copyStatus")
+                            .textContent =
+                            "Unable to copy. Please copy manually.";
+
+                    });
+
+            }
+
+        </script>
+
+        {% else %}
+
+        <!-- Instructions -->
+
+        <div class="panel">
+
+            <h2>💡 How It Works</h2>
+
+            <p class="empty-message">
+                1. Write or paste your Python code.
+            </p>
+
+            <p class="empty-message">
+                2. Click on Check My Code.
+            </p>
+
+            <p class="empty-message">
+                3. AI identifies errors and explains why they happen.
+            </p>
+
+            <p class="empty-message">
+                4. Get the complete corrected code.
+            </p>
+
+            <p class="empty-message">
+                5. See sample input, expected output and running instructions.
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <script>
+
+        // Copy original code
+
+        function copyOriginalCode() {
+
+            const code =
+                document.getElementById("codeInput").value;
+
+            navigator.clipboard.writeText(code)
+                .then(() => {
+                    alert("Original code copied successfully!");
+                })
+                .catch(() => {
+                    alert("Unable to copy code. Please copy manually.");
+                });
+
+        }
+
+    </script>
+
+</body>
+
+</html>

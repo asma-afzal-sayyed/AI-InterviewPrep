@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Resume Analyzer</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="login-box">
+
+        <h1>Resume Analyzer 📄</h1>
+
+        <form method="POST"
+              enctype="multipart/form-data">
+
+            <input type="file"
+                   name="resume"
+                   required>
+
+            <br><br>
+
+            <button type="submit">
+                Upload Resume
+            </button>
+
+        </form>
+
+        <br>
+
+        {% if skills %}
+
+        <div class="result-box">
+
+            <h2>AI Resume Feedback 🤖</h2>
+
+            <pre>{{ skills }}</pre>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>

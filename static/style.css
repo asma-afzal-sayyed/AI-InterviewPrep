@@ -1,0 +1,191 @@
+body {
+    font-family: Arial;
+    background-color: #f5f5f5;
+    text-align: center;
+    padding-top: 100px;
+}
+
+h1 {
+    color: blue;
+    font-size: 50px;
+}
+
+p {
+    font-size: 25px;
+}
+button {
+    padding: 15px 25px;
+    font-size: 18px;
+    margin: 10px;
+    border: none;
+    background-color: blue;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: darkblue;
+}
+.navbar {
+    background-color: blue;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 15px;
+    font-size: 18px;
+}
+
+.content {
+    text-align: center;
+    margin-top: 100px;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: white;
+    padding: 30px;
+    width: 250px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px gray;
+}
+
+.card h2 {
+    color: blue;
+}
+
+.login-box {
+    background-color: white;
+    width: 350px;
+    margin: auto;
+    margin-top: 120px;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px gray;
+    text-align: center;
+}
+
+input {
+    width: 90%;
+    padding: 12px;
+    font-size: 16px;
+}
+
+.result-box{
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:12px;
+
+    width:80%;
+
+    margin:auto;
+
+    margin-top:20px;
+
+    box-shadow:0px 0px 10px lightgray;
+
+    text-align:left;
+
+}
+
+pre{
+
+    white-space:pre-wrap;
+
+    font-size:16px;
+
+}
+
+textarea {
+
+    width: 90%;
+    height: 120px;
+
+    padding: 15px;
+
+    border-radius: 10px;
+
+    border: 1px solid gray;
+
+    font-size: 16px;
+}
+
+.ai-response {
+
+    background-color: #111827;
+
+    color: white;
+
+    padding: 20px;
+
+    border-radius: 15px;
+
+    margin-top: 20px;
+
+    text-align: left;
+}
+
+.ai-response pre {
+
+    white-space: pre-wrap;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+}
+
+.result-box {
+
+    margin-top: 20px;
+
+    padding: 20px;
+
+    background: #f4f4f4;
+
+    border-radius: 10px;
+
+    text-align: left;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+.result-box h2 {
+
+    color: #333;
+
+    margin-bottom: 15px;
+}
+
+.result-box pre {
+
+    white-space: pre-wrap;
+
+    word-wrap: break-word;
+
+    font-size: 15px;
+
+    font-family: Arial, sans-serif;
+
+    line-height: 1.6;
+}
